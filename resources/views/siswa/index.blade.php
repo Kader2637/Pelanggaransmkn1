@@ -203,7 +203,7 @@
 
                                         <div class="mb-3">
                                             <label>Nis</label>
-                                            <div class="mb-3 col-12 col-xl-12">
+                                            <div class="">
                                                 <select id="single" class="form-select">
                                                     @foreach ($nis as $item)
                                                         <option value="{{ $item->nis }}" data-name="{{ $item->name }}">
@@ -211,7 +211,6 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
-
                                                 <script>
                                                         $("#single").select2({
                                                             dropdownParent: $("#myModal")
