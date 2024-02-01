@@ -246,12 +246,14 @@
                                             <label class="form-label fw-bold">Kelas </label>
                                             <div class="mb-3">
                                                 <select name="kelas" id="kelas" class="form-select">
+                                                    @forelse ($kelas as $item)
                                                     <option disabled selected>Pilih Kelas</option>
-                                                    @foreach ($kelas as $item)
-                                                        <option value="{{ $item->kelas }}"
-                                                            @if ($item->kelas == old('kelas', $data->kelas ?? '')) selected @endif>
-                                                            {{ $item->kelas }}</option>
-                                                    @endforeach
+                                                    <option value="{{ $item->kelas }}"
+                                                        @if ($item->kelas == old('kelas', $data->kelas ?? '')) selected @endif>
+                                                        {{ $item->kelas }}</option>
+                                                    @empty
+                                                        <option value="" disabled selected>Data kelas kosong</option>
+                                                    @endforelse
                                                 </select>
                                                 <!-- error message untuk idkelas -->
                                                 @error('kelas')
