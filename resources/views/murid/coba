@@ -1,0 +1,77 @@
+<!-- Total Revenue -->
+                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                  <div class="card">
+                    <div class="row row-bordered g-0">
+                      <div class="col-md-8">
+                        <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
+                        @if($hadir || $ijin || $sakit || $alpha)
+                        <div id="chartContainer" style="margin-left: 2cm"></div>
+                        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                var data = [
+                                    {
+                                        jenis: "Hadir",
+                                        jumlah: {{ $hadir }}
+                                    },
+                                    {
+                                        jenis: "Ijin",
+                                        jumlah: {{ $ijin }}
+                                    },
+                                    {
+                                        jenis: "Sakit",
+                                        jumlah: {{ $sakit }}
+                                    },
+                                    {
+                                        jenis: "Alpha",
+                                        jumlah: {{ $alpha }}
+                                    }
+                                ];
+
+                                var labels = data.map(function (item) {
+                                    return item.jenis;
+                                });
+
+                                var series = data.map(function (item) {
+                                    return item.jumlah;
+                                });
+
+                                var options = {
+                                    chart: {
+                                        type: 'pie',
+                                        height: 350
+                                    },
+                                    labels: labels,
+                                    series: series,
+                                    responsive: [{
+                                        breakpoint: 480,
+                                        options: {
+                                            chart: {
+                                                width: 200
+                                            },
+                                            legend: {
+                                                position: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                                var chart = new ApexCharts(
+                                    document.querySelector("#chartContainer"),
+                                    options
+                                );
+
+                                chart.render();
+                            });
+                        </script>
+                    @else
+                        <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: -3em">
+                            <img src="gambar/empty-icon/empty-directory.png" class="w-25">
+                            <p>Tidak ada data tersedia</p>
+                        </div>
+                    @endif
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/ Total Revenue -->
