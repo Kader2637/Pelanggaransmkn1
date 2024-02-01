@@ -169,33 +169,8 @@
             <div class="content-wrapper">
 
                 <div class="container-fluid">
-                    <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <select id="multiple" class="js-states form-control">
-                    <option>Java</option>
-                    <option>Javascript</option>
-                    <option>PHP</option>
-                    <option>Visual Basic</option>
-                </select>
+                    <!-- Modal -->
                     <!-- Select2 CSS -->
                     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css"
                         rel="stylesheet" />
@@ -203,18 +178,8 @@
                     <!-- jQuery -->
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                     <!-- Select2 -->
+                    <link rel="stylesheet" href="{{ asset('dist/libs/select2/dist/css/select2.min.css') }}">
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
-
-
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#modal-create">
-                        Launch demo modal
-                    </button>
-
-                    <!-- Modal -->
-
 
                     <button type="button" class="btn rounded-pill btn-primary" style="margin-top: 1em"
                         data-toggle="modal" data-target="#myModal">Tambah</button>
@@ -235,33 +200,23 @@
                                     <form action="{{ route('siswa.store') }}" enctype="multipart/form-data"
                                         method="POST">
                                         @csrf
-                                        <select id="single" class="js-states form-control">
-                                            <option>Java</option>
-                                            <option>Javascript</option>
-                                            <option>PHP</option>
-                                            <option>Visual Basic</option>
-                                        </select>
-                                        <script>
-                                            $("#single").select2({
-                                                placeholder: "Select a programming language",
-                                                allowClear: true
-                                            });
-                                            $("#multiple").select2({
-                                                placeholder: "Select a programming language",
-                                                allowClear: true
-                                            });
-                                        </script>
+
                                         <div class="mb-3">
                                             <label>Nis</label>
-                                            <div class="mb-3">
-                                                <select name="nis" id="nis" class="form-select">
-                                                    <option disabled selected>Pilih Nis</option>
+                                            <div class="mb-3 col-12 col-xl-12">
+                                                <select id="single" class="form-select">
                                                     @foreach ($nis as $item)
-                                                        <option value="{{ $item->nis }}"
-                                                            data-name="{{ $item->name }}">{{ $item->nis }}
+                                                        <option value="{{ $item->nis }}" data-name="{{ $item->name }}">
+                                                            {{ $item->nis }}
                                                         </option>
                                                     @endforeach
                                                 </select>
+
+                                                <script>
+                                                        $("#single").select2({
+                                                            dropdownParent: $("#myModal")
+                                                        });
+                                                </script>
                                                 <!-- error message untuk jenis -->
                                                 @error('nis')
                                                     <div class="alert alert-danger mt-2">
